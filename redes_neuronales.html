@@ -1,9 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+	<style type="text/css">
+		#sitio {
+			padding: 15rem;
+			font-size: 3rem;
+			margin-left: 15rem;
+		}
+	</style>
+</head>
+<body onload="getLocation()">
 
+	<div id="sitio">
+		Coordenada
+	</div>
 
 
 <script src="https://unpkg.com/brain.js"></script>
 <script type="text/javascript">
 
+var network = new brain.NeuralNetwork();
 
+    
+		
+        network.train([
+			
+			{input: {lat: -0.022266, lon: -0.440062}, output: {uide: 1}},
+			
+			{input: {lat: 1, lon: 1}, output: {casa: 1}},
+			
+		]);
 
+        function getLocation() {
+		  if (navigator.geolocation) {
+			navigator.geolocation.watchPosition(update);
+		  } else { 
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		  }
+		}
+
+        function update(position) {
+			
+	
+			var div = document.getElementById("sitio");
+			var l = (position.coords.longitude/180).toFixed(6);
+			var la = (position.coords.latitude/180).toFixed(6);
+			
+			var entrada = {
+				lat: la,
+				lon: l,
+				
+			};
+
+            var x=""
+			var resultado = network.run(entrada);
+            dato=['uide','casa']
+            res=[]
+
+            console.log('Training result: ', resultado);
+            for (var i=0; i<dato.length; i++) { 
+                console.log(dato[i],':', resultado[dato[i]]);
+                res.push(resultado[dato[i]]);
+            }
+            
+            for (var i=0; i<dato.length; i++) { 
+                if(resultado[dato[i]]==res.sort()[res.length - 1]){
+                    index = dato[i];
+                }
+            }
+           
+            div.innerHTML = index;
+            
+		
+        }
+        
 </script>		
+</body>
+</html>

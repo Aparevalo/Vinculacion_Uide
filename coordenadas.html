@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title></title>
+	
+	<style type="text/css">
+		#sitio {
+			padding: 15rem;
+			font-size: 3rem;
+			margin-left: 15rem;
+		}
+	</style>
+</head>
 <body onload="getLocation()">
 
-
-<p id="demo"></p>
+	<div id="sitio">
+		Coordenada
+	</div>
 
 <script>
 var x = document.getElementById("demo");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
   }
-}
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  }
 </script>
 
 </body>
