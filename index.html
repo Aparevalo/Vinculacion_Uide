@@ -10,12 +10,7 @@
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 </head>
 
-<script>
-      window.onload = () => {navigator.geolocation.getCurrentPosition((position) => {
-        document.querySelector('a-entity').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
-      });
-     }
-    </script>
+
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
 
